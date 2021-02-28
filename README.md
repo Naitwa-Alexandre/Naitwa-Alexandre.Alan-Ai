@@ -1,6 +1,7 @@
 # Voice Controlled React News Application - Alan AI Voice Assistant
 
 <img src="https://camo.githubusercontent.com/64fc387d5bfc4f8ea8aa2c9c18b616d25a90dbaa7828faf989bb372110ae32e1/68747470733a2f2f692e6962622e636f2f5356794b364e682f53637265656e73686f742d323032302d30382d30332d61742d32312d32342d32332e706e67" alt=""/>
+
 ## Introduction.
 
 This is a code repository for the corresponding video tutorial.
