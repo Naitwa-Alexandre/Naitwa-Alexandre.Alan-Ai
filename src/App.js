@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import alanBtn from '@alan-ai/alan-sdk-web';
 
+import wordsToNumbers from 'words-to-numbers';
+
 import NewsCards from './components/NewsCards/NewsCards';
 import useStyles from './styles.js';
 
@@ -17,12 +19,22 @@ const App = () => {
     useEffect(() => {
         alanBtn({
             key: alanKey,
-            onCommand: ({ command, articles }) => {
+            onCommand: ({ command, articles, number }) => {
                 if(command === 'newHeadlines') {
                     setNewsArticles(articles);
                     setActiveArticle(-1);
                 } else if(command === 'highlight') {
                     setActiveArticle((prevActiveArticle) => prevActiveArticle + 1);
+                } else if(command === 'open') {
+                    const parseNumber = number.length > 2 ? wordsToNumbers(number, {fuzzy: true }) : number;
+                    const article = articles[parseNumber - 1]
+
+                    if(parseNumber > 20) {
+                        alanBtn().playText('Please try that again.');
+                    } else if(article) {
+                        window.open(article.url, '_blank');
+                        alanBtn().playText('Opening...')
+                    }
                 }
             }
         })
